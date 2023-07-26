@@ -43,7 +43,7 @@ const App = ({ searchQuery }) => {
 
   useEffect(() => {
     dispatch(fetchBooks());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
