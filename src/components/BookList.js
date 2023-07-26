@@ -1,5 +1,4 @@
 import {
-  Button,
   CircularProgress,
   Grid,
   Modal,
@@ -15,7 +14,6 @@ import CardMedia from "@mui/material/CardMedia";
 import { ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ReactStars from "react-stars";
 import { fetchBooks } from "../store/bookSlice";
 
 const App = ({ searchQuery }) => {
