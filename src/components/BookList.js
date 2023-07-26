@@ -4,6 +4,7 @@ import {
   Grid,
   Modal,
   Paper,
+  Rating,
   Typography,
   createTheme,
 } from "@mui/material";
@@ -71,7 +72,11 @@ const App = ({ searchQuery }) => {
                 <Grid
                   key={index}
                   item
+                  direction="row"
+                  justifyContent="space-evenly"
+                  alignItems="center"
                   onClick={() => handleBookClick(bookItem)}
+                  sx={{ cursor: "pointer" }}
                 >
                   <Paper
                     sx={{
@@ -91,25 +96,28 @@ const App = ({ searchQuery }) => {
                       }}
                     />
                   </Paper>
-                  <Typography style={{ marginTop: 10 }}>
+                  <Typography
+                    gutterBottom
+                    style={{ marginTop: 10, marginBottom: 7 }}
+                  >
                     {bookItem.title.length > 22
                       ? `${bookItem.title.slice(0, 22)}...`
                       : bookItem.title}
                   </Typography>
-                  <ReactStars
-                    count={5}
-                    value={bookItem.reviews}
-                    size={24}
-                    color2={"#ffd700"}
-                    edit={false}
-                  />
+                  <Rating name="read-only" value={bookItem.rating} readOnly />
                   <p style={theme}>${bookItem.price}</p>
                 </Grid>
               ))
             ) : (
-              <p>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <CircularProgress />
-              </p>
+              </Box>
             )}
           </Grid>
         </Grid>
@@ -123,7 +131,7 @@ const App = ({ searchQuery }) => {
               width: "40%",
               "@media (max-width: 600px)": {
                 width: "80%",
-                left: "10%", // You may need to adjust the left position for mobile
+                left: "10%",
               },
             }}
           >
@@ -195,13 +203,12 @@ const App = ({ searchQuery }) => {
                               >
                                 Rating
                               </h5>
-                              <ReactStars
-                                count={5}
-                                value={selectedBook.reviews}
-                                size={10}
-                                color2={"#ffd700"}
-                                edit={false}
-                              />{" "}
+                              <Rating
+                                name="size-small"
+                                value={selectedBook.rating}
+                                size="small"
+                                readOnly
+                              />
                             </Box>
                           </Grid>
                           <Grid item xs={4}>
@@ -240,7 +247,7 @@ const App = ({ searchQuery }) => {
                             }}
                           >
                             Author:
-                          </span>{" "}
+                          </span>
                           <span
                             style={{
                               fontWeight: "normal",
@@ -259,7 +266,7 @@ const App = ({ searchQuery }) => {
                             }}
                           >
                             Country:
-                          </span>{" "}
+                          </span>
                           <span
                             style={{
                               fontWeight: "normal",
@@ -278,7 +285,7 @@ const App = ({ searchQuery }) => {
                             }}
                           >
                             Language:
-                          </span>{" "}
+                          </span>
                           <span
                             style={{
                               fontWeight: "normal",
@@ -297,7 +304,7 @@ const App = ({ searchQuery }) => {
                             }}
                           >
                             Year:
-                          </span>{" "}
+                          </span>
                           <span
                             style={{
                               fontWeight: "normal",
@@ -316,7 +323,7 @@ const App = ({ searchQuery }) => {
                             }}
                           >
                             Pages:
-                          </span>{" "}
+                          </span>
                           <span
                             style={{
                               fontWeight: "normal",
@@ -326,14 +333,25 @@ const App = ({ searchQuery }) => {
                             {selectedBook.pages}
                           </span>
                         </h5>
-                        <Button
-                          variant="contained"
-                          size="small"
-                          style={{ width: "100%" }}
-                          // onClick={selectedBook.link}
-                        >
-                          View Details
-                        </Button>
+                        {selectedBook && (
+                          <a
+                            href={selectedBook.link}
+                            target="_blank"
+                            style={{
+                              width: "90%",
+                              textDecoration: "none",
+                              display: "inline-block",
+                              backgroundColor: theme.palette.primary.main,
+                              color: "#fff",
+                              padding: "8px 16px",
+                              borderRadius: "4px",
+                              cursor: "pointer",
+                              textAlign: "center",
+                            }}
+                          >
+                            View Details
+                          </a>
+                        )}
                       </Box>
                     </div>
                   ) : (
