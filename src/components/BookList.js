@@ -54,7 +54,7 @@ const App = ({ searchQuery }) => {
       );
       setFilteredBooks(filtered);
     }
-  }, [book, searchQuery, dispatch]);
+  }, [book, searchQuery]);
 
   return (
     <ThemeProvider theme={theme}>
