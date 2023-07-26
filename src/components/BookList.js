@@ -335,6 +335,7 @@ const App = ({ searchQuery }) => {
                           <a
                             href={selectedBook.link}
                             target="_blank"
+                            rel="noopener noreferrer"
                             style={{
                               width: "90%",
                               textDecoration: "none",
